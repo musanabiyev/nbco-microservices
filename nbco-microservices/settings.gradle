@@ -1,0 +1,10 @@
+rootProject.name = 'nbco-microservices '
+
+//Java Projects
+include 'common'
+include 'user-ms'
+include 'customer-ms'
+include 'credit-ms'
+include 'payment-ms'
+include 'api-gateway'
+

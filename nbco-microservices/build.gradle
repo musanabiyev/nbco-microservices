@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "$springBootVersion" apply false
+    id 'io.spring.dependency-management' version "$springDependencyManagerVersion" apply false
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    apply plugin: 'java'
+    group = 'com.company'
+    def hash = 'git rev-parse --short HEAD'.execute().text.trim()
+    version = "$projectVersion.$hash"
+}
+
+subprojects {
+    sourceCompatibility = jdk_version
+    targetCompatibility = jdk_version
+
+//	apply plugin: 'pmd'
+//	apply plugin: 'checkstyle'
+
+
+}
+
+def javaProjects = [
+        project(':common'),
+        project(':user-ms'),
+        project(':customer-ms'),
+        project(':credit-ms'),
+        project(':payment-ms'),
+        project(':api-gateway')
+
+]
+
+configure(javaProjects) {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+    }
+
+    sourceCompatibility = "$jdk_version"
+    targetCompatibility = "$jdk_version"
+}
